@@ -1,0 +1,69 @@
+<HTML>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+
+
+  <style>
+    .head {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+      text-align: center;
+      width: 80%;
+      border-radius: 5px;
+      margin: 0 auto;
+      float: none;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      background-color: white;
+    }
+
+    .head:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+  </style>
+
+  <!-- socket script start -->
+  <script>
+    window.xAxis = [];
+    window.yAxis = [];
+    var socket;
+    socket = io.connect('http://localhost:3000/');
+
+    socket.on('graphArray', (graphArray) => {
+
+
+      xAxis = graphArray.xAxis;
+      yAxis = graphArray.yAxis;
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'list',
+        // The data for our dataset
+        data: {
+          labels: xAxis,
+          datasets: [{
+            label: 'Bremen 7 tage Inzidenz',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: yAxis
+          }]
+        },
+
+        // Configuration options go here
+        options: {}
+      });
+
+    });
+
+  </script>
+  <!-- socket script ends -->
+</head>
+<div class = head >
+  <canvas id="myChart"></canvas>
+</div>
+
+
+</HTML>

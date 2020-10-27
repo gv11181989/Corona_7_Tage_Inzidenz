@@ -30,12 +30,21 @@
     window.xAxis = [];
     window.yAxis = [];
     var socket;
+    var bundesland = 0;
+    var bundesName = 'Baden-Württem­berg';
+    function f1() {
+      bundesland = document.getElementById("bundesland").value;
+      select = document.getElementById("bundesland");
+      bundesName = select.options[select.selectedIndex].text;
+    }
     socket = io.connect('http://localhost:3000/');
-
+    setInterval(() => {
+      console.log(bundesland)
+      socket.emit('from_client', bundesland);
+    }, 1000);    
     socket.on('graphArray', (graphArray) => {
       xAxis = graphArray.xAxis;
       yAxis = graphArray.yAxis;
-      
       var ctx = document.getElementById('myChart').getContext('2d');
       var chart = new Chart(ctx, {
         // The type of chart we want to create
@@ -43,9 +52,9 @@
         // The data for our dataset
         data: {
           labels: xAxis,
-            
+
           datasets: [{
-            label: 'Bremen 7 tage Inzidenz',
+            label: bundesName + ' 7 tage Inzidenz',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             data: yAxis,
@@ -54,19 +63,40 @@
         },
 
         // Configuration options go here
-       options: {
-        animation: {
-        duration: 0
+        options: {
+          animation: {
+            duration: 0
+          }
         }
-      }
       });
-    
+
     });
 
   </script>
   <!-- socket script ends -->
 </head>
-<div class = head >
+<div class=head>
+  <form onchange="f1()">
+    <label for="bundesland">bundesland wählen:</label>
+    <select id="bundesland" name="bundesland">
+      <option value=0>Baden-Württem­berg</option>
+      <option value=1>Bayern</option>
+      <option value=2>Berlin</option>
+      <option value=3>Branden­burg</option>
+      <option value=4>Bremen</option>
+      <option value=5>Hamburg</option>
+      <option value=6>Hessen</option>
+      <option value=7>Meck­lenburg-Vor­pommern</option>
+      <option value=8>Nieder­sachsen</option>
+      <option value=9>Nord­rhein-West­falen</option>
+      <option value=10>Rhein­land-Pfalz</option>
+      <option value=11>Saarland</option>
+      <option value=12>Sachsen</option>
+      <option value=13>Sachsen-Anhalt</option>
+      <option value=14>Schles­wig-Holstein</option>
+      <option value=15>Thüringen</option>
+    </select>
+  </form>
   <canvas id="myChart"></canvas>
 </div>
 

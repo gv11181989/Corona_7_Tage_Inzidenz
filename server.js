@@ -20,24 +20,22 @@ var options = {
 };
 
 let pyshell = new PythonShell('db.py', options);
-pyshell.on('message', function cal(message) {
-  
+pyshell.on('message', function cal(message) {  
   var pythonData = message;
 //Import from python end 
   graphArray = pythonData
-  console.log(graphArray);
-  
 const socket = require('socket.io');
 const io = socket(server);
 io.sockets.on('connection', (socket) => {
-  setInterval(() => {
+ setInterval(() => {
     console.log(socket.id);
     console.log(graphArray);
     socket.broadcast.emit('graphArray', graphArray);
-  }, 60000);
+ }, 6000);
 });
 
 });
+
 
 
 

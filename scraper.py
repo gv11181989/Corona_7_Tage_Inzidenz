@@ -21,4 +21,4 @@ for x in range(16):
 def to_array():
     bundesweit = {"datum": datum, "zahlen": bundes_array}
     return (bundesweit)
-
+    

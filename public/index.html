@@ -33,29 +33,34 @@
     socket = io.connect('http://localhost:3000/');
 
     socket.on('graphArray', (graphArray) => {
-
-
       xAxis = graphArray.xAxis;
       yAxis = graphArray.yAxis;
+      
       var ctx = document.getElementById('myChart').getContext('2d');
       var chart = new Chart(ctx, {
         // The type of chart we want to create
-        type: 'list',
+        type: 'line',
         // The data for our dataset
         data: {
           labels: xAxis,
+            
           datasets: [{
             label: 'Bremen 7 tage Inzidenz',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            data: yAxis
+            data: yAxis,
+            fill: false
           }]
         },
 
         // Configuration options go here
-        options: {}
+       options: {
+        animation: {
+        duration: 0
+        }
+      }
       });
-
+    
     });
 
   </script>

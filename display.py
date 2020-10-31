@@ -4,6 +4,8 @@ import pyqtgraph as pg
 import sys  # We need sys so that we can pass argv to QApplication
 import os
 import db
+
+
 class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self, *args, **kwargs):
@@ -14,9 +16,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
         Inzident = db.y_array
         datum = db.x_array
-        print (db.x_array , db.y_array)
+        print(db.x_array, db.y_array)
         # plot data: x, y values
-        self.graphWidget.plot(datum,Inzident)
+        self.graphWidget.plot(datum, Inzident)
 
 
 def main():

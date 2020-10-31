@@ -2,7 +2,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
-    
+
 URL = 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html'
 page = requests.get(URL)
 bundes_array = []
@@ -22,4 +22,3 @@ def to_array():
     bundesweit = {"datum": datum, "zahlen": bundes_array}
     # print (bundesweit)
     return (bundesweit)
-

@@ -15,6 +15,7 @@ app.use(express.static('./public'));
 //Import from python start
 let { PythonShell } = require('python-shell');
 var options = {
+  pythonPath: 'python',
   scriptPath: './',
   args: [],
   mode: "json"
@@ -40,7 +41,7 @@ io.sockets.on('connection', (socket) => {
     });
     pyshell.end(function (err) {
       if (err) {
-        throw err;
+        console.log( err);
       };
       console.log('finished')
     });

@@ -37,7 +37,7 @@
       select = document.getElementById("bundesland");
       bundesName = select.options[select.selectedIndex].text;
     }
-    socket = io.connect('http://localhost:3000/');
+    socket = io.connect('http://ec2-3-120-145-84.eu-central-1.compute.amazonaws.com:3000/');
     setInterval(() => {
       console.log(bundesland)
       socket.emit('from_client', bundesland);

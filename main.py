@@ -18,7 +18,7 @@ def main():
       mycol = mydb["bundesland_corona_inzident"]
       mydict = scraper.to_array()
       date = mydict['datum']
-      # x = mycol.delete_one({"datum": date})
+      # x = mycol.delete_one({"datum": '1.11.2020,'})
       # x = mycol.find({ "_id" == date}).limit(1).size()
       # x = mycol.insert_one(mydict)
       x = mycol.update_one( { 'datum' : date}, 
@@ -40,5 +40,3 @@ def main():
  # Start process
 if __name__ == '__main__':
     main()        
-
-

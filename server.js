@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 var graphArray = [];
 var server = app.listen(port, () => {
-  console.log("port 3000 active");
+  console.log("port active");
 });
 
 app.use(express.static('./public'));

@@ -9,7 +9,7 @@ bundes_array = []
 soup = BeautifulSoup(page.content, 'html.parser')
 table = soup.tbody
 datum = soup.find(id="wrapperContent").find(
-    class_='text').findAll('p')[0].text[7:17]
+    class_='text').findAll('p')[0].text[6:16]
 for x in range(16):
     bundesland = table.findAll('tr')[x].findAll(
         'td')[0].text.replace("\xad", "").replace("\n", "")
@@ -22,3 +22,4 @@ def to_array():
     bundesweit = {"datum": datum, "zahlen": bundes_array}
     # print (bundesweit)
     return (bundesweit)
+# to_array()
